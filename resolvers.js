@@ -3,12 +3,10 @@ const todoItems = [
   { id: 2, name: "name nr 2", description: "description nr 2" },
 ];
 
-const resolveFunctions = {
+module.exports = {
   Query: {
     todoItems() {
       return todoItems;
     },
   },
 };
-
-export default resolveFunctions;
