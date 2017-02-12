@@ -1,0 +1,19 @@
+{
+  "name": "todo-server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/skanberg/todo-server.git",
+  "author": "Fredrik Skanberg <skanberg@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "graphql": "^0.9.1",
+    "graphql-tools": "^0.10.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.22.2",
+    "babel-preset-es2015": "^6.22.0"
+  },
+  "babel": {
+    "plugins": ["es2015"]
+  }
+}
