@@ -1,2 +1,3 @@
-# todo-server
-TODO Server
+# TODO Server
+
+A todo server using GrahpQl.
