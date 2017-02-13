@@ -4,13 +4,20 @@ const resolvers = require("./resolvers");
 const schema = `
 
 type TodoItem {
-  id: Int!
+  id: String!
   name: String!
   description: String
 }
 
 type Query {
   todoItems: [TodoItem]
+}
+
+type Mutation {
+  addTodoItem (
+    name: String!
+    description: String
+  ): TodoItem
 }
 
 `;
