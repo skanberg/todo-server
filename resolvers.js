@@ -1,18 +1,24 @@
 const Datastore = require("nedb");
 
-const todoItems = [
-  { id: 1, name: "name nr 1", description: "description nr 1" },
-  { id: 2, name: "name nr 2", description: "description nr 2" },
-];
-
 const db = new Datastore({ filename: "todo.db", autoload: true });
 
-db.insert({ name: "name nr 1", description: "description nr 1" });
+// db.insert({ name: "name nr 1", description: "description nr 1" });
+
+function getTodoItems() {
+  return new Promise((resolve, reject) => {
+    db.find({}, (err, items) => {
+      if (err) {
+        reject("Unable to get todo items");
+      }
+      resolve(items);
+    });
+  });
+}
 
 module.exports = {
   Query: {
     todoItems() {
-      return todoItems;
+      return getTodoItems();
     },
   },
   Mutation: {

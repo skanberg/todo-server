@@ -1,18 +1,20 @@
 {
   "name": "todo-server",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "server.js",
   "repository": "https://github.com/skanberg/todo-server.git",
   "author": "Fredrik Skanberg <skanberg@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "cors": "^2.8.1",
+    "express": "^4.14.1",
+    "express-graphql": "^0.6.3",
     "graphql": "^0.9.1",
     "graphql-tools": "^0.10.0",
-    "micro": "^7.0.6",
     "nedb": "^1.8.0"
   },
   "devDependencies": {},
   "scripts": {
-    "start": "micro"
+    "start": "node server.js"
   }
 }
