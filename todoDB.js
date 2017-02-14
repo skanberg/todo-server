@@ -8,8 +8,9 @@ module.exports = {
       db.find({}, (err, items) => {
         if (err) {
           reject("Unable to get todo items");
+        } else {
+          resolve(items);
         }
-        resolve(items);
       });
     });
   },
@@ -19,9 +20,21 @@ module.exports = {
       db.insert(item, (err, newItem) => {
         if (err) {
           reject("Unable to insert new item");
+        } else {
+          resolve(newItem);
         }
-        console.log(newItem);
-        resolve(newItem);
+      });
+    });
+  },
+
+  removeTodoItem(id) {
+    return new Promise((resolve, reject) => {
+      db.remove({ _id: id }, {}, (err, numRemoved) => {
+        if (err || numRemoved !== 1) {
+          reject("Unable to remove item");
+        } else {
+          resolve("Item removed");
+        }
       });
     });
   }

@@ -1,14 +1,15 @@
-const { getTodoItems, addTodoItem } = require("./todoDB");
+const {
+  getTodoItems,
+  addTodoItem,
+  removeTodoItem,
+} = require("./todoDB");
 
 module.exports = {
   Query: {
-    todoItems() {
-      return getTodoItems();
-    },
+    todoItems: () => getTodoItems(),
   },
   Mutation: {
-    addTodoItem(_, variables) {
-      return addTodoItem(variables);
-    }
+    addTodoItem: (_, variables) => addTodoItem(variables),
+    removeTodoItem: (_, { id }) => removeTodoItem(id),
   },
 };

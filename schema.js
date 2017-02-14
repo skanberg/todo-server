@@ -18,6 +18,10 @@ type Mutation {
     name: String!
     description: String
   ): TodoItem
+  
+  removeTodoItem(
+    id: String!
+  ): String
 }
 
 `;
