@@ -4,7 +4,7 @@ const resolvers = require("./resolvers");
 const schema = `
 
 type TodoItem {
-  id: String!
+  _id: String!
   name: String!
   description: String
 }
