@@ -12,15 +12,27 @@ module.exports = {
         if (err) {
           reject("Unable to get todo items");
         } else {
-          resolve(items.map(({ _id, name, description}) => ({ id: _id, name, description}) ));
+          resolve(items.map(({ _id, name, description, done }) => ({ id: _id, name, description, done }) ));
         }
       });
     });
   },
 
-  addTodoItem(item) {
+  getTodoItem(id) {
     return new Promise((resolve, reject) => {
-      db.insert(item, (err, { _id, name, description }) => {
+      db.findOne({ _id: id }, (err, item) => {
+        if (err) {
+          reject("Unable to get todo items");
+        } else {
+          resolve(item !== null ? { id: item._id, name: item.name, description: item.description, done: item.done } : null);
+        }
+      });
+    });
+  },
+
+  addTodoItem({ name, description }) {
+    return new Promise((resolve, reject) => {
+      db.insert({ name, description, done: false }, (err, { _id, name, description }) => {
         if (err) {
           reject("Unable to insert new item");
         } else {

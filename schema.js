@@ -6,11 +6,15 @@ const schema = `
 type TodoItem {
   id: String!
   name: String!
+  done: Boolean
   description: String
 }
 
 type Query {
-  todoItems: [TodoItem]
+  allTodoItems: [TodoItem]
+  todoItem(
+    id: String!
+  ): TodoItem
 }
 
 type Mutation {
