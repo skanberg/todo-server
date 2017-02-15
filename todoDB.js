@@ -1,6 +1,9 @@
 const Datastore = require("nedb");
 
-const db = new Datastore({ filename: "todo.db", autoload: true });
+const db = new Datastore({
+  filename: "todo.db",
+  autoload: true
+});
 
 module.exports = {
   getTodoItems() {
@@ -9,7 +12,7 @@ module.exports = {
         if (err) {
           reject("Unable to get todo items");
         } else {
-          resolve(items);
+          resolve(items.map(({ _id, name, description}) => ({ id: _id, name, description}) ));
         }
       });
     });
@@ -17,11 +20,11 @@ module.exports = {
 
   addTodoItem(item) {
     return new Promise((resolve, reject) => {
-      db.insert(item, (err, newItem) => {
+      db.insert(item, (err, { _id, name, description }) => {
         if (err) {
           reject("Unable to insert new item");
         } else {
-          resolve(newItem);
+          resolve({ id: _id, name, description });
         }
       });
     });
@@ -30,10 +33,10 @@ module.exports = {
   removeTodoItem(id) {
     return new Promise((resolve, reject) => {
       db.remove({ _id: id }, {}, (err, numRemoved) => {
-        if (err || numRemoved !== 1) {
+        if (err) {
           reject("Unable to remove item");
         } else {
-          resolve("Item removed");
+          resolve(numRemoved === 1);
         }
       });
     });

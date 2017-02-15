@@ -4,7 +4,7 @@ const resolvers = require("./resolvers");
 const schema = `
 
 type TodoItem {
-  _id: String!
+  id: String!
   name: String!
   description: String
 }
@@ -21,7 +21,7 @@ type Mutation {
   
   removeTodoItem(
     id: String!
-  ): String
+  ): Boolean
 }
 
 `;
