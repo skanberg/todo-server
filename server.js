@@ -12,6 +12,10 @@ server.use("/graphql", graphqlHTTP({
   graphiql: true,
 }));
 
+server.get("/", (req, res) => {
+  res.redirect("/graphql")
+});
+
 server.listen(4000);
 
 console.log("Server started");
