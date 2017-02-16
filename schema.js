@@ -6,8 +6,8 @@ const schema = `
 type TodoItem {
   id: String!
   name: String!
-  done: Boolean
   description: String
+  completed: Boolean
 }
 
 type Query {
@@ -25,6 +25,13 @@ type Mutation {
   
   removeTodoItem(
     id: String!
+  ): Boolean
+  
+  updateTodoItem(
+    id: String!
+    name: String
+    description: String
+    completed: Boolean
   ): Boolean
 }
 

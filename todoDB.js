@@ -12,7 +12,8 @@ module.exports = {
         if (err) {
           reject("Unable to get todo items");
         } else {
-          resolve(items.map(({ _id, name, description, done }) => ({ id: _id, name, description, done }) ));
+          resolve(items.map(({ _id, name, description, completed }) => ({ id: _id, name, description, completed }) ));
+          resolve(items.map(({ _id, name, description, completed }) => ({ id: _id, name, description, completed }) ));
         }
       });
     });
@@ -22,9 +23,9 @@ module.exports = {
     return new Promise((resolve, reject) => {
       db.findOne({ _id: id }, (err, item) => {
         if (err) {
-          reject("Unable to get todo items");
+          reject("Unable to get todo item");
         } else {
-          resolve(item !== null ? { id: item._id, name: item.name, description: item.description, done: item.done } : null);
+          resolve(item !== null ? { id: item._id, name: item.name, description: item.description, completed: item.completed } : null);
         }
       });
     });
@@ -32,7 +33,7 @@ module.exports = {
 
   addTodoItem({ name, description }) {
     return new Promise((resolve, reject) => {
-      db.insert({ name, description, done: false }, (err, { _id, name, description }) => {
+      db.insert({ name, description, completed: false }, (err, { _id, name, description }) => {
         if (err) {
           reject("Unable to insert new item");
         } else {
@@ -49,6 +50,28 @@ module.exports = {
           reject("Unable to remove item");
         } else {
           resolve(numRemoved === 1);
+        }
+      });
+    });
+  },
+
+  updateTodoItem(variables) {
+    return new Promise((resolve, reject) => {
+      const updateItem = { $set: {} };
+      if (variables.name !== undefined) {
+        updateItem.$set.name = variables.name;
+      }
+      if (variables.description !== undefined) {
+        updateItem.$set.description = variables.description;
+      }
+      if (variables.completed !== undefined) {
+        updateItem.$set.completed = variables.completed;
+      }
+      db.update({ _id: variables.id }, updateItem, {}, (err, numReplaced) => {
+        if (err) {
+          reject("Unable to remove item");
+        } else {
+          resolve(numReplaced === 1);
         }
       });
     });
