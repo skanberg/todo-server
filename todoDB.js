@@ -1,14 +1,15 @@
 const Datastore = require("nedb");
 
 const db = new Datastore({
+  timestampData: true,
   filename: "todo.db",
-  autoload: true
+  autoload: true,
 });
 
 module.exports = {
   getTodoItems() {
     return new Promise((resolve, reject) => {
-      db.find({}, (err, items) => {
+      db.find({}).sort({ createdAt: 1 }).exec((err, items) => {
         if (err) {
           reject("Unable to get todo items");
         } else {
