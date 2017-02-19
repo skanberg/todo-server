@@ -29,13 +29,13 @@ type Query {
 
 # All posible mutations to execute.
 type Mutation {
-  # Adds a new todo item.
+  # Adds a new todo item. Returns the id of the added todo item.
   addTodoItem (
     # The name of the todo item. Is required.
     name: String!
     # An optional description of the todo item.
     description: String
-  ): TodoItem
+  ): String
   
   # Removes a todo item. Returns true if the removal was successful.
   removeTodoItem(

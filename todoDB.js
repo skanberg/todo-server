@@ -34,11 +34,11 @@ module.exports = {
 
   addTodoItem({ name, description }) {
     return new Promise((resolve, reject) => {
-      db.insert({ name, description, completed: false }, (err, { _id, name, description }) => {
+      db.insert({ name, description, completed: false }, (err, { _id }) => {
         if (err) {
           reject("Unable to insert new item");
         } else {
-          resolve({ id: _id, name, description });
+          resolve(_id);
         }
       });
     });
