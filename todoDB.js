@@ -70,7 +70,7 @@ module.exports = {
       }
       db.update({ _id: variables.id }, updateItem, {}, (err, numReplaced) => {
         if (err) {
-          reject("Unable to remove item");
+          reject("Unable to update item");
         } else {
           resolve(numReplaced === 1);
         }
