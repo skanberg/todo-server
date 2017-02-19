@@ -10,4 +10,4 @@ To start:
 
     yarn start
 
-Now is the GraphiQL tool available on http://localhost:4000/graphql. The GraphQL enpoint is available on the same URL.
+Now the GraphiQL tool is available on http://localhost:4000/graphql. The GraphQL enpoint is available on the same URL.
